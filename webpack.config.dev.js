@@ -1,6 +1,8 @@
 import path from 'path';
+import htmlWebPackPlugin from 'html-webpack-plugin';
 
 export default {
+  mode: 'development',
   devtool: 'inline-source-map',
   entry: [
     path.resolve(__dirname, 'src/index')
@@ -11,7 +13,11 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [],
+  plugins: [
+    new htmlWebPackPlugin({
+      template: 'src/index.html'
+    })
+  ],
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
